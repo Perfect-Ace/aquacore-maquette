@@ -27,3 +27,11 @@ npm run dev
 Puis ouvrir http://localhost:5180.
 
 React · Vite · Tailwind CSS · lucide-react. Les notes de conception (en français) sont dans [NOTES.md](NOTES.md).
+
+## Mettre à jour la démo en ligne
+
+```bash
+npm run deploy
+```
+
+Construit la maquette et la publie sur la branche `gh-pages` (GitHub Pages).

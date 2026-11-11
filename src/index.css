@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* ────────────────────────────────────────────────────────────
+   AquaCore design tokens — ocean palette
+   navy  = brand / structure     sea  = accent / action
+   mist  = soft blue-gray neutrals
+   ──────────────────────────────────────────────────────────── */
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+
+  --color-navy-50: #eef3fb;
+  --color-navy-100: #d9e3f3;
+  --color-navy-200: #b6c8e6;
+  --color-navy-300: #8aa6d3;
+  --color-navy-400: #5d80bb;
+  --color-navy-500: #3f62a0;
+  --color-navy-600: #2f4c84;
+  --color-navy-700: #263d6b;
+  --color-navy-800: #1b2c4f;
+  --color-navy-900: #122039;
+  --color-navy-950: #0b1529;
+
+  --color-sea-50: #ebfcf9;
+  --color-sea-100: #cdf7f0;
+  --color-sea-200: #9feee2;
+  --color-sea-300: #62dfcf;
+  --color-sea-400: #26c6b6;
+  --color-sea-500: #00a199;
+  --color-sea-600: #00857f;
+  --color-sea-700: #046b67;
+  --color-sea-800: #0a5653;
+  --color-sea-900: #0d4745;
+  --color-sea-950: #022a29;
+
+  --color-mist-50: #f5f8fb;
+  --color-mist-100: #edf1f6;
+  --color-mist-200: #dfe5ed;
+  --color-mist-300: #c9d2de;
+  --color-mist-400: #97a3b4;
+  --color-mist-500: #6b788b;
+  --color-mist-600: #515d6f;
+  --color-mist-700: #3f4959;
+  --color-mist-800: #2a323e;
+  --color-mist-900: #1a2029;
+
+  /* Semantic tokens — components use these, not raw ramps */
+  --color-background: var(--color-mist-50);
+  --color-surface: #ffffff;
+  --color-border: var(--color-mist-200);
+  --color-ink: var(--color-navy-950);
+  --color-ink-soft: var(--color-mist-600);
+  --color-ink-muted: var(--color-mist-500);
+  --color-primary: var(--color-navy-900);
+  --color-primary-hover: var(--color-navy-800);
+  --color-accent: var(--color-sea-500);
+  --color-accent-strong: var(--color-sea-600);
+  --color-ring: var(--color-sea-400);
+
+  /* Charts (validated: lightness, chroma, CVD, contrast on white) */
+  --color-chart-1: #00a199;
+  --color-chart-2: #3a6ad0;
+  --color-chart-grid: var(--color-mist-200);
+
+  --radius-card: 1rem;
+  --shadow-card: 0 1px 2px rgb(11 21 41 / 0.04), 0 1px 3px rgb(11 21 41 / 0.06);
+  --shadow-lift: 0 4px 12px -2px rgb(11 21 41 / 0.08), 0 2px 4px -2px rgb(11 21 41 / 0.05);
+  --shadow-pop: 0 18px 40px -12px rgb(11 21 41 / 0.25);
+
+  --animate-fade-up: fade-up 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-background);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    background: var(--color-sea-200);
+    color: var(--color-navy-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Safe area padding for the mobile bottom nav (installed PWA on iOS) */
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Prototype chart roles (validated: teal / orange / blue, light surface) */
+@theme {
+  --color-sales: #00a199;
+  --color-loss: #eb6834;
+  --color-cost: #3a6ad0;
+  --color-left: var(--color-mist-300);
+  --animate-drive: drive 2.4s ease-in-out infinite;
+  @keyframes drive {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-1.5px); }
+  }
+  --animate-pulse-ring: pulse-ring 2s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+  @keyframes pulse-ring {
+    0% { transform: scale(0.6); opacity: 0.7; }
+    100% { transform: scale(2.2); opacity: 0; }
+  }
+}
